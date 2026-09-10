@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 501567943}
   - component: {fileID: 501567942}
   - component: {fileID: 501567941}
+  - component: {fileID: 501567945}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -233,6 +234,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &501567945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501567940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e0ebb4ecec4dc44db9fe1413b1bb729, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Turret
+  target: {fileID: 1101042983}
+  bullet: {fileID: 6097007162168175633, guid: 2b7fa0b7ff3d03c4488cb3d09200a5c6, type: 3}
+  rate_of_fire: 0.2
 --- !u!1 &527599868
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,7 +452,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1101042983}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
