@@ -24,12 +24,15 @@ public class PLayerMovement : MonoBehaviour
         direction.x = Input.GetAxisRaw("Horizontal");
         //Up/Down
         direction.z = Input.GetAxisRaw("Vertical");
+        //normalize vectors so that we dont move faster along the diagonals
+        direction = direction.normalized; 
 
         //Construct the velocity vector
         velocity = direction * speed;
         velocity *= Time.fixedDeltaTime;
         //Move
         rb.MovePosition(rb.position + velocity);
+        
 
         Debug.Log("direction: " + direction);
         Debug.Log("Velocity: " + velocity);
@@ -38,8 +41,8 @@ public class PLayerMovement : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, transform.position + direction * 2);
+        //Gizmos.color = Color.green;
+        //Gizmos.DrawLine(transform.position, transform.position + direction * 2);
 
     }
 }
