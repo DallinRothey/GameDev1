@@ -11,12 +11,15 @@ public class Turret : MonoBehaviour
     public float spread = 5; //In degrees
     public float view_angle = 25; //In degrees
     private float shoot_timer = 0;
+    private float dot_needed_to_see;
     private Vector3 dir_to_target = Vector3.zero;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        //compute the dot needed to see the target
+        //calculate once since Cos() is an expensive function.
+        dot_needed_to_see = Mathf.Cos(view_angle / 2 * Mathf.Deg2Rad);
     }
 
     // Update is called once per frame
@@ -58,7 +61,10 @@ public class Turret : MonoBehaviour
     
         
     }
-    
+    private bool TargetInView()
+    {
+        return true;
+    }
     private void OnDrawGizmos()
     {
         //Bullet's direction
@@ -101,6 +107,11 @@ public class Turret : MonoBehaviour
         Gizmos.color = Color.magenta;
         Gizmos.DrawLine(transform.position, transform.position + right * 10);
         Gizmos.DrawLine(transform.position, transform.position + left * 10);
+
+        Vector3 flat_dir_to_target = new Vector3(dir_to_target.x, 0, dir_to_target.z).normalized;
+        Gizmos.color = Color.orange;
+        Gizmos.DrawLine(transform.position, transform.position + flat_dir_to_target * 2);
+
         #endregion
     }
 
