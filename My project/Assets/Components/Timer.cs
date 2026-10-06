@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
+    [Tooltip("The current time on the timer. If the timer has time, it will count down.")]
     [SerializeField] [Range(0,600)] private float time;
     private bool is_paused = false;
     private bool has_finished = false;
@@ -51,7 +52,7 @@ public class Timer : MonoBehaviour
         has_finished = false;
     }
     //stops timer by setting it to zero
-    public void StopTimer(float t)
+    public void StopTimer()
     {
         time = 0;
         has_finished = true;
