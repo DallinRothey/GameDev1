@@ -13,4 +13,8 @@ public class ColorCube : MonoBehaviour
     {
         
     }
+    public void ChangeColor(Color col)
+    {
+        GetComponent<MeshRenderer>().material.color = col;
+    }
 }

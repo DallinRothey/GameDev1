@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 
 public class Timer : MonoBehaviour
@@ -7,6 +8,7 @@ public class Timer : MonoBehaviour
     [SerializeField] [Range(0,600)] private float time;
     private bool is_paused = false;
     private bool has_finished = false;
+    public UnityEvent TimerFinished;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -54,6 +56,7 @@ public class Timer : MonoBehaviour
     //stops timer by setting it to zero
     public void StopTimer()
     {
+        TimerFinished.Invoke();
         time = 0;
         has_finished = true;
     }

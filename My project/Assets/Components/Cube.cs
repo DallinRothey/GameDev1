@@ -25,15 +25,8 @@ public class Cube : MonoBehaviour
             timer.SetPause(true);
         if (Input.GetKeyDown(KeyCode.Z))
             timer.SetPause(false);
-
-        if(timer.IsFinished())
-        {
-            ChangeColor();
-            timer.StartTimer(color_timer);
-        }
-
     }
-    private void ChangeColor()
+    public void ChangeColor()
     {
         float r = Random.Range(0f, 1f);
         float g = Random.Range(0f, 1f);
