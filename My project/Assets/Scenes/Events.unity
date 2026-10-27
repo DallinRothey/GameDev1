@@ -513,6 +513,72 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!1 &276453953 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4731002918391181041, guid: 1b668d88958c5fc4f8dff52410e9b364, type: 3}
+  m_PrefabInstance: {fileID: 1512081601}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &276453954 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8205532190293581141, guid: 1b668d88958c5fc4f8dff52410e9b364, type: 3}
+  m_PrefabInstance: {fileID: 1512081601}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276453953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2457461d5895f994790c3be683269e71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PLayerMovement
+--- !u!114 &276453960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276453953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: 5c2eb8262d048e9439710378c01c3edc, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 276453954}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: ReadMoveInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e5dc071b-ecc2-4765-b5b8-69ece70250d4
+    m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0c00076a-e257-4410-8641-0bc767cbed66
+    m_ActionName: 'Player/Jump[/Keyboard/space]'
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &654859781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,7 +1111,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4731002918391181041, guid: 1b668d88958c5fc4f8dff52410e9b364, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 276453960}
   m_SourcePrefab: {fileID: 100100000, guid: 1b668d88958c5fc4f8dff52410e9b364, type: 3}
 --- !u!1 &1530064496
 GameObject:

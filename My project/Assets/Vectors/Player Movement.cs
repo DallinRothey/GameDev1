@@ -1,7 +1,13 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PLayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
+    //input
+    private InputAction move_action;
+    private InputAction jump_action;
+
     //Components
     private Rigidbody rb;
 
@@ -13,26 +19,35 @@ public class PLayerMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        /*
+        //Input
+        move_action = InputSystem.actions.FindAction("Move");
+        jump_action = InputSystem.actions.FindAction("Jump");
+        */
         //Get Components
         rb = GetComponent<Rigidbody>();
     }
-
+    public void ReadMoveInput(InputAction.CallbackContext context)
+    {
+        direction.x = context.ReadValue<Vector2>().x;
+        direction.z = context.ReadValue<Vector2>().y;
+    }
+    void Update()
+    {
+        /*
+        //get direction
+        direction.x = move_action.ReadValue<Vector2>().x;
+        direction.z = move_action.ReadValue<Vector2>().y;
+        */
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Left/right
-        direction.x = Input.GetAxisRaw("Horizontal");
-        //Up/Down
-        direction.z = Input.GetAxisRaw("Vertical");
-        //normalize vectors so that we dont move faster along the diagonals
-        direction = direction.normalized; 
-
         //Construct the velocity vector
         velocity = direction * speed;
         velocity *= Time.fixedDeltaTime;
         //Move
         rb.MovePosition(rb.position + velocity);
-        
 
         Debug.Log("direction: " + direction);
         Debug.Log("Velocity: " + velocity);
