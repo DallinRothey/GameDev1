@@ -34,6 +34,9 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
+        Debug.Log(jump_action.WasPerformedThisFrame());
+        Debug.Log(jump_action.phase);
+
         /*
         //get direction
         direction.x = move_action.ReadValue<Vector2>().x;
