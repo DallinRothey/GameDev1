@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 497873791}
   - component: {fileID: 497873790}
   - component: {fileID: 497873789}
+  - component: {fileID: 497873793}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -235,6 +236,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &497873793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 497873788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4999d663cc08aec4688d1d399754634f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  controller: {fileID: 0}
+  rend: {fileID: 0}
+  speed: 5
+  direction: {x: 0, y: 0}
+  xz_velcoity: {x: 0, y: 0}
+  y_velocity: 0
+  velocity: {x: 0, y: 0, z: 0}
+  acceleration: 30
+  friction: 25
+  gravity: 9.81
+  jump_impulse: 10
+  jump: 0
 --- !u!1 &604026813
 GameObject:
   m_ObjectHideFlags: 0
