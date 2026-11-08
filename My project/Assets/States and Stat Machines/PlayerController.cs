@@ -15,9 +15,9 @@ public class PlayerController : MonoBehaviour
     //movement
     public float speed = 5;
     [HideInInspector] public Vector2 direction = Vector2.zero;
-    [HideInInspector] public Vector2 xz_velcoity = Vector2.zero;
     [HideInInspector] public float y_velocity = 0;
     [HideInInspector] public Vector3 velocity = Vector3.zero;
+    [HideInInspector] public Vector2 xz_velocity = Vector2.zero;
 
     //Accelerations
     public float acceleration = 30f;
@@ -40,15 +40,13 @@ public class PlayerController : MonoBehaviour
         //Find reference to the Move and Jump actions
         move_action = InputSystem.actions.FindAction("Move");
         jump_action = InputSystem.actions.FindAction("Jump");
-
-        //read input into variables
-        direction = move_action.ReadValue<Vector2>();
-        jump = jump_action.IsPressed(); 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //read input into variables
+        direction = move_action.ReadValue<Vector2>();
+        jump = jump_action.IsPressed(); 
     }
 }

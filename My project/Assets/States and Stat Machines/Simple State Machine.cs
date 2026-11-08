@@ -24,25 +24,119 @@ public class SimpleStateMachine : MonoBehaviour
         return;
     }
     #endregion
+
+    //jump
+    if (player_controller.jump)
+    {
+        player_controller.y_velocity = player_controller.jump_impulse;
+        current_state = States.Air;
+        return;
+    }
     }
     private void GroundState()
     {
         //Change color to green.
         player_controller.rend.material.color = Color.green;
-        //Move
-        Vector3 xz_dir = new Vector3(player_controller.direction.x, 0, player_controller.direction.y);
-        player_controller.controller.Move(xz_dir * player_controller.speed * Time.fixedDeltaTime);
+        
+        //acceleration
+        player_controller.xz_velocity += player_controller.direction * player_controller.acceleration * Time.fixedDeltaTime;
+        player_controller.xz_velocity = Vector2.ClampMagnitude(player_controller.xz_velocity, player_controller.speed);
+
+        //friction
+        if (player_controller.direction == Vector2.zero)
+        {
+            player_controller.xz_velocity = Vector2.MoveTowards(
+                player_controller.xz_velocity,
+                Vector2.zero,
+                player_controller.friction * Time.fixedDeltaTime
+            );
+        }
+        
+        //Construct velocity
+        player_controller.velocity = new Vector3(player_controller.xz_velocity.x,
+                                                -player_controller.gravity,
+                                                player_controller.xz_velocity.y);
+
+        //move
+        player_controller.controller.Move(player_controller.velocity * Time.fixedDeltaTime);
+
+        //Sync velocities after the move.
+        player_controller.velocity = player_controller.controller.velocity;
+        player_controller.xz_velocity = new Vector3(player_controller.controller.velocity.x,
+                                                    player_controller.controller.velocity.z);
+
+        
         #region Change States
         if (player_controller.controller.velocity == Vector3.zero)
         {
-            current_state = States.Idle;
-            return;
+            if(player_controller.direction == Vector2.zero)
+            {
+                current_state = States.Idle;
+                return;
+            }
         }
         #endregion
+
+        //jump
+    if (player_controller.jump && player_controller.controller.isGrounded)
+    {
+        player_controller.y_velocity = player_controller.jump_impulse;
+        current_state = States.Air;
+        return;
+    }
+    if (!player_controller.controller.isGrounded)
+    {
+        current_state = States.Air;
+        return;
+    }
     }   
+
     private void AirState()
     {
+        //Change color to blue.
+        player_controller.rend.material.color = Color.blue;
+        
+        //acceleration
+        player_controller.xz_velocity += player_controller.direction * player_controller.acceleration * Time.fixedDeltaTime;
+        player_controller.xz_velocity = Vector2.ClampMagnitude(player_controller.xz_velocity, player_controller.speed);
 
+        //gravity
+        player_controller.y_velocity -= player_controller.gravity * Time.fixedDeltaTime;
+        
+        //Construct velocity
+        player_controller.velocity = new Vector3(player_controller.xz_velocity.x,
+                                                player_controller.y_velocity,
+                                                player_controller.xz_velocity.y);
+
+        //move
+        player_controller.controller.Move(player_controller.velocity * Time.fixedDeltaTime);
+
+        if (player_controller.controller.isGrounded)
+        {
+            if (player_controller.xz_velocity == Vector2.zero)
+            {
+                current_state = States.Idle;
+            }
+            else
+            {
+                current_state = States.Ground;
+            }
+            return;
+        }
+
+        //Sync velocities after the move.
+        player_controller.velocity = player_controller.controller.velocity;
+        player_controller.xz_velocity = new Vector3(player_controller.controller.velocity.x,
+                                                    player_controller.controller.velocity.z);
+        player_controller.y_velocity = player_controller.controller.velocity.y;
+
+        //jump
+    if (player_controller.jump)
+    {
+        player_controller.y_velocity = player_controller.jump_impulse;
+        current_state = States.Air;
+        return;
+    }
     }
 
 
